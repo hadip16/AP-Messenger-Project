@@ -224,8 +224,13 @@ class LoginWindow(QWidget):
         user = session.query(User).filter_by(username=username, password=password).first()
 
         if user:
-            self.stacked_widget.main_window.current_user = user
+            main = self.stacked_widget.main_window
+            main.current_user = user
+
+            main.update_profile()
+            main.load_contacts()
             self.stacked_widget.setCurrentIndex(2)
+
         else:
             QMessageBox.warning(self, "Error", "Invalid credentials")
 
@@ -777,3 +782,4 @@ if __name__ == "__main__":
 
     app = MessengerApp(sys.argv)
     sys.exit(app.exec())
+
