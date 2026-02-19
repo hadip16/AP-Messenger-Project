@@ -164,6 +164,7 @@ class MessengerServer:
             thread = threading.Thread(
                 target=self.handle_client,
                 args=(client_socket, address)
+            )
             thread.start()
 
             # ====================== CLIENT GUI ======================
